@@ -10,3 +10,7 @@ $  yarn prisma init
 $ yarn prisma migrate dev
 create_deliveryman
 ```
+### Prisma studio
+```
+$ yarn prisma studio
+```

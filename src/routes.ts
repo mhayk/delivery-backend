@@ -4,6 +4,7 @@ import { CreateClientController } from './modules/clients/useCases/createClient/
 import { CreateDeliverymanController } from './modules/deliveryman/useCases/createDeliveryman/CreateDeliverymanController';
 import { AuthenticateDeliverymanController } from './modules/account/authenticateDeliveryman/AuthenticateDeliverymanController';
 import { CreateDeliveryController } from './modules/deliveries/useCases/createDelivery/CreateDeliveryController';
+import { ensureAuthenticateClient } from './middlewares/ensureAuthenticateClient';
 
 const routes = Router();
 
@@ -20,6 +21,6 @@ routes.post('/deliveryman/authenticate', authenticateDeliverymanController.handl
 
 routes.post('/deliveryman', createDeliverymanController.handle);
 
-routes.post('/delivery', deliveryController.handle);
+routes.post('/delivery', ensureAuthenticateClient, deliveryController.handle);
 
 export { routes };

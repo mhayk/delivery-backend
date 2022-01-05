@@ -6,6 +6,7 @@ import { AuthenticateDeliverymanController } from './modules/account/authenticat
 import { CreateDeliveryController } from './modules/deliveries/useCases/createDelivery/CreateDeliveryController';
 import { ensureAuthenticateClient } from './middlewares/ensureAuthenticateClient';
 import { FindAllWithoutEndDateController } from './modules/deliveries/useCases/findAllAvailable/FindAllAvailableController';
+import { ensureAuthenticateDeliveryman } from './middlewares/ensureAuthenticateDelivaryman';
 
 const routes = Router();
 
@@ -25,6 +26,6 @@ routes.post('/deliveryman', createDeliverymanController.handle);
 
 routes.post('/delivery', ensureAuthenticateClient, deliveryController.handle);
 
-routes.get('/delivery/available', findAllAvailableController.handle);
+routes.get('/delivery/available', ensureAuthenticateDeliveryman, findAllAvailableController.handle);
 
 export { routes };

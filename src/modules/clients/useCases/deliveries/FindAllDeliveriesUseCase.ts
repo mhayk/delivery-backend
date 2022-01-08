@@ -5,8 +5,11 @@ export class FindAllDeliveriesUseCase {
         const deliveries = await prisma.clients.findMany({
             where: {
                 id: id_client
-            }, include: {
-                deliveries: true
+            },
+            select: {
+                deliveries: true,
+                id: true,
+                username: true
             },
         })
 
